@@ -1,0 +1,16 @@
+<p><?=$totalQuestions?> questions have been submiteted to the forum.</p>
+
+<?php foreach ($questions as $question): ?>
+  <blockquote>
+    <?= htmlspecialchars($question['text_content'], ENT_QUOTES, 'UTF-8') ?>
+
+    (by <a href="mailto:<?=htmlspecialchars($question['email'], ENT_QUOTES, 'UTF-8');?>"><?=htmlspecialchars($question['name'], ENT_QUOTES, 'UTF-8'); ?></a>)
+
+    <!--<a href="editquestion.php?id=<?=$joke['id']?>">Edit</a>-->
+
+    <!-- <form action="deletejoke.php" method="post">
+      <input type="hidden" name="id" value="<?=$question['id']?>">
+      <input type="submit" value="Delete">
+    </form> -->
+  </blockquote>
+<?php endforeach; ?>
