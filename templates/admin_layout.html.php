@@ -14,8 +14,10 @@
         <li><a href="cate.php">Category List</a></li>-->
         <li><a href="admin_question.php">Question List</a></li>
         <li><a href="addquestion.php">Ask a new question</a></li>
+        <li><a href="admin_dm.php">Admin messages</a></li>
+        <li><a href="module.php">Module List</a></li>
         <li><a href="addmodule.php">Add a new module</a></li>
-        <li><a href="login/Logout.php">Public site/Logout</a></li>
+        <li><a href="../login/Logout.php">Public site/Logout</a></li>
       </ul>
     </nav>
     <main>

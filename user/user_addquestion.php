@@ -16,7 +16,7 @@ if (isset($_POST['text_content'])) {
     // $stmt->execute();
       $users = $_SESSION["User_id"];
     insertQuestion($pdo, $_POST['text_content'], $_POST['img_content'], $users,$_POST['modules']);
-    header('location: admin_question.php');
+    header('location: user_question.php');
   } catch (PDOException $e) {
     $title = 'An error has occurred';
     $output = 'Database error: ' . $e->getMessage();
@@ -40,4 +40,4 @@ ob_start();
   $output = ob_get_clean();
 }
 
-include '../templates/admin_layout.html.php';
+include '../templates/user_layout.html.php';

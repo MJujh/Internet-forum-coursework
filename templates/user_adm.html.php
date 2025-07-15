@@ -1,7 +1,7 @@
 <form action="" method="post">
-    <label for="text_content">ask your question here;</label>
-    <textarea name="text_content" rows="3" cols="40"></textarea> 
-    
+    <label for="message">ask your question here;</label>
+    <textarea name="message" rows="3" cols="40"></textarea> 
+
 <!--     <select name="">
         <option value="">Selecst an author</option>
         <?php foreach ($authors as $author):?>
@@ -11,7 +11,7 @@
         <?php endforeach;?>
     </select>
  -->
-    <select name="modules">
+<!--     <select name="modules">
         <option value="">Select a module</option>
         <?php foreach ($modules as $module):?>
         <option value="<?=htmlspecialchars($module['id'], ENT_QUOTES, 'UTF-8'); ?>">
@@ -19,6 +19,6 @@
         </option>
         <?php endforeach;?>
     </select>
-    <input type="file" name="img_content" id="">
+    <input type="file" name="img_content" id=""> -->
     <input type="submit"  name="submit" value="Add">
 </form>

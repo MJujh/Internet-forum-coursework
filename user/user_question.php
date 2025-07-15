@@ -1,6 +1,6 @@
 <?php
 
-require "../login/Check.php";
+
 
 try {
   include '../includes/DatabaseConnection.php';
@@ -13,12 +13,12 @@ try {
   $title = 'Question';
   $totalQuestions = totalQuestions($pdo);
   ob_start();
-  include '../templates/admin_questions.html.php';
+  include '../templates/questions.html.php';
   $output = ob_get_clean();
 } catch (PDOException $e) {
   $title = 'An error has occurred';
   $output = 'Database error: ' . $e->getMessage();
 }
 
-include '../templates/admin_layout.html.php';
+include '../templates/user_layout.html.php';
 

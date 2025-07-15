@@ -5,14 +5,20 @@ function totalQuestions($pdo){
     return $row[0];
 }
 
+function totalMessages($pdo){
+    $query = query($pdo,'SELECT COUNT(*) FROM admin_message');
+    $row = $query->fetch();
+    return $row[0];
+}
+
 function totalAuthors($pdo){
     $query = query($pdo,'SELECT COUNT(*) FROM author');
     $row = $query->fetch();
     return $row[0];
 }
 
-function totalCates($pdo){
-    $query = query($pdo, 'SELECT COUNT(*) FROM category');
+function totalModules($pdo){
+    $query = query($pdo,'SELECT COUNT(*) FROM module');
     $row = $query->fetch();
     return $row[0];
 }
@@ -35,10 +41,10 @@ function updateQuestion($pdo,$id,$text_content){
     query($pdo, $query, parameters: $parameters);
 }
 
-function insertQuestion($pdo, $text_content, $userid, $moduleid){
-    $query = 'INSERT INTO question(text_content, date, user_id, module_id)
-    VALUES (:text_content, CURDATE(), :user_id, :module_id)';
-    $parameters =[':text_content' => $text_content, ':user_id' => $userid, ':module_id' => $moduleid];
+function insertQuestion($pdo, $text_content, $img_content, $userid, $moduleid){
+    $query = 'INSERT INTO question(text_content, date, img_content, user_id, module_id)
+    VALUES (:text_content, CURDATE(), :img_content, :user_id, :module_id)';
+    $parameters =[':text_content' => $text_content, ':img_content' => $img_content, ':user_id' => $userid, ':module_id' => $moduleid];
     query($pdo, $query, $parameters);
 }
 
@@ -65,3 +71,31 @@ function getUserId($pdo, $email, $password){
     $user = $query->fetch();
     return $user ? $user['id'] : null;
 }
+function getUserRole($pdo, $email, $password){
+    $sql = 'SELECT role FROM user
+            WHERE email = :email AND `password` = :password';
+    $parameters = [':email' => $email, ':password' => $password];
+    $query = query($pdo,$sql,$parameters);
+    $user = $query->fetch();
+    return $user ? $user['role'] : null;
+}
+
+function getModule($pdo, $id){
+    $parameters = [':id' => $id];
+    $query = query($pdo, 'SELECT * FROM module WHERE id = :id', $parameters);
+    return $query->fetch();
+}
+
+function insertAdminQuestion($pdo, $message, $user_id){
+    $query = 'INSERT INTO admin_message(message, date, user_id)
+    VALUES (:message, CURDATE(), :user_id)';
+    $parameters = [':message' => $message, ':user_id' => $user_id];
+    query($pdo, $query, $parameters);
+}
+
+function deleteMessage($pdo, $id){
+    $sql = 'DELETE FROM admin_message WHERE id = :id';
+    $parameters = [':id' => $id];
+    query($pdo, $sql, $parameters);
+}
+

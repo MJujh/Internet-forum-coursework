@@ -3,8 +3,8 @@
 
 
 try {
-  include 'includes/DatabaseConnection.php';
-  include 'includes/DatabaseFunctions.php';
+  include '../includes/DatabaseConnection.php';
+  include '../includes/DatabaseFunctions.php';
 
   $sql = 'SELECT question.id, question.title, question.text_content, question.date, question.img_content, user.name, user.email  FROM question
   INNER JOIN user ON user_id = user.id
@@ -13,12 +13,12 @@ try {
   $title = 'Question';
   $totalQuestions = totalQuestions($pdo);
   ob_start();
-  include 'templates/questions.html.php';
+  include '../templates/questions.html.php';
   $output = ob_get_clean();
 } catch (PDOException $e) {
   $title = 'An error has occurred';
   $output = 'Database error: ' . $e->getMessage();
 }
 
-include 'templates/layout.html.php';
+include '../templates/public_layout.html.php';
 

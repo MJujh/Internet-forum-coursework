@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_POST['text_content'])) {
+if (isset($_POST['message'])) {
   try {
     include '../includes/DatabaseConnection.php';
     include '../includes/DatabaseFunctions.php';
@@ -15,29 +15,24 @@ if (isset($_POST['text_content'])) {
     // $stmt->bindValue(':joketext', $_POST['joketext']);
     // $stmt->execute();
       $users = $_SESSION["User_id"];
-    insertQuestion($pdo, $_POST['text_content'], $_POST['img_content'], $users,$_POST['modules']);
-    header('location: admin_question.php');
+    insertAdminQuestion($pdo, $_POST['message'], $users);
+    header('location: user_dm.php');
   } catch (PDOException $e) {
     $title = 'An error has occurred';
     $output = 'Database error: ' . $e->getMessage();
   }
 } else {
   include '../includes/DatabaseConnection.php';
-  $title = 'Ask a question';
+  $title = 'Ask our admin a question';
 
   ob_start();
-
-$title = 'Add a new module';
-$sql_a = 'SELECT * FROM module';
-$modules = $pdo->query($sql_a);
-ob_start();
 
 
 
   $title = 'Ask a question';
   ob_start();
-  include '../templates/addquestion.html.php';
+  include '../templates/user_adm.html.php';
   $output = ob_get_clean();
 }
 
-include '../templates/admin_layout.html.php';
+include '../templates/user_layout.html.php';

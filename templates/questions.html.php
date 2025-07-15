@@ -4,7 +4,7 @@
   <blockquote>
     <?= htmlspecialchars($question['text_content'], ENT_QUOTES, 'UTF-8') ?>
 
-    (by <a href="mailto:<?=htmlspecialchars($question['email'], ENT_QUOTES, 'UTF-8');?>"><?=htmlspecialchars($question['name'], ENT_QUOTES, 'UTF-8'); ?></a>)
+    (by <a href=""><?=htmlspecialchars($question['name'], ENT_QUOTES, 'UTF-8'); ?></a>)
 
     <!--<a href="editquestion.php?id=<?=$joke['id']?>">Edit</a>-->
 
