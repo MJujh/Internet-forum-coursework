@@ -4,11 +4,13 @@ try{
     include '../../includes/DatabaseFunctions.php';
 
     $check = validateEmailAndPassword($pdo, $_POST["email"], $_POST["password"]);
+    $User_id = getUserId($pdo,$_POST["email"], $_POST["password"] );
 
     if ($check == 1){
             session_start();
             $_SESSION["Authorised"] = "Y";
-            header("Location:../index.php");
+            $_SESSION["User_id"] = $User_id;
+            header("Location:../admin_index.php");
     }else{
         header("Location:Wronglogin.php");
     } 

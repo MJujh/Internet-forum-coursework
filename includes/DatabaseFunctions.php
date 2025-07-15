@@ -23,23 +23,29 @@ function query($pdo, $sql, $parameters = []){
     return $query;
 }
 
-function getJoke($pdo, $id){
+function getQuestion($pdo, $id){
     $parameters = [':id' => $id];
-    $query = query($pdo, 'SELECT * FROM joke WHERE id = :id', $parameters);
+    $query = query($pdo, 'SELECT * FROM question WHERE id = :id', $parameters);
     return $query->fetch();
 }
 
-function updateJoke($pdo,$jokeId,$joketext){
-    $query = 'UPDATE joke SET joketext = :joketext WHERE id = :id';
-    $parameters = [':joketext' => $joketext, ':id' => $jokeId];
+function updateQuestion($pdo,$id,$text_content){
+    $query = 'UPDATE question SET text_content = :text_content WHERE id = :id';
+    $parameters = [':text_content' => $text_content, ':id' => $id];
     query($pdo, $query, parameters: $parameters);
 }
 
-function insertJoke($pdo, $joketext, $authorid, $cateid){
-    $query = 'INSERT INTO joke(joketext, jokedate, authorid, cateid)
-    VALUES (:joketext, CURDATE(), :authorid, :cateid)';
-    $parameters =[':joketext' => $joketext, ':authorid' => $authorid, ':cateid' => $cateid];
+function insertQuestion($pdo, $text_content, $userid, $moduleid){
+    $query = 'INSERT INTO question(text_content, date, user_id, module_id)
+    VALUES (:text_content, CURDATE(), :user_id, :module_id)';
+    $parameters =[':text_content' => $text_content, ':user_id' => $userid, ':module_id' => $moduleid];
     query($pdo, $query, $parameters);
+}
+
+function deleteQuestion($pdo, $id){
+    $sql = 'DELETE FROM question WHERE id = :id';
+  $parameters = [':id' => $_POST["id"]];
+  query($pdo, $sql, $parameters);
 }
 
 function validateEmailAndPassword($pdo, $email, $password){
@@ -49,4 +55,13 @@ function validateEmailAndPassword($pdo, $email, $password){
     $query = query($pdo,$sql,$parameters);
     $check = $query->fetch();
     return $check[0];
+}
+
+function getUserId($pdo, $email, $password){
+    $sql = 'SELECT id FROM user
+            WHERE email = :email AND `password` = :password';
+    $parameters = [':email' => $_POST["email"], ':password' => $_POST["password"]];
+    $query = query($pdo,$sql,$parameters);
+    $user = $query->fetch();
+    return $user ? $user['id'] : null;
 }

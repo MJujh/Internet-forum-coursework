@@ -1,25 +1,25 @@
 <?php
-include 'includes/DatabaseConnection.php';
-include 'includes/DatabaseFunctions.php';
+include '../includes/DatabaseConnection.php';
+include '../includes/DatabaseFunctions.php';
 try{
-  if(isset($_POST['joketext'])){
+  if(isset($_POST['text_content'])){
     // $sql = 'UPDATE joke SET joketext = :joketext WHERE id = :id';
     // $stmt = $pdo->prepare($sql);
     // $stmt->bindValue(':joketext', $_POST['joketext']);
     // $stmt->bindValue(':id', $_POST['jokeid']);
     // $stmt->execute();
-    updateJoke($pdo, $_POST['jokeid'], $_POST['joketext']);
-    header('location: jokes.php');
+    updateQuestion($pdo, $_POST['id'], $_POST['text_content']);
+    header('location: admin_question.php');
   }else{
     //$sql = 'SELECT * FROM joke WHERE id = :id';
     //$stmt = $pdo->prepare($sql);
     //$stmt->bindValue(':id', $_GET['id']);
     //$stmt->execute();
-    $joke = getJoke($pdo, $_GET['id']);
-    $title = 'Edit joke';
+    $question = getQuestion($pdo, $_GET['id']);
+    $title = 'Edit question';
 
     ob_start();
-    include 'templates/editjoke.html.php';
+    include '../templates/editquestion.html.php';
     $output = ob_get_clean();
   }
 }catch(PDOException $e){
@@ -27,4 +27,4 @@ try{
   $output = 'Error editing joke: ' . $e->getMessage();
 }
 
-include 'templates/layout.html.php';
+include '../templates/admin_layout.html.php';

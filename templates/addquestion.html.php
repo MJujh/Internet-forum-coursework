@@ -1,8 +1,8 @@
 <form action="" method="post">
-    <label for="joketext">Type your joke here;</label>
-    <textarea name="joketext" rows="3" cols="40"></textarea> 
+    <label for="text_content">ask your question here;</label>
+    <textarea name="text_content" rows="3" cols="40"></textarea> 
     
-    <select name="authors">
+<!--     <select name="">
         <option value="">Selecst an author</option>
         <?php foreach ($authors as $author):?>
         <option value="<?=htmlspecialchars($author['id'], ENT_QUOTES, 'UTF-8'); ?>">
@@ -10,12 +10,12 @@
         </option>
         <?php endforeach;?>
     </select>
-
-    <select name="categories">
-        <option value="">Select a category</option>
-        <?php foreach ($categories as $category):?>
-        <option value="<?=htmlspecialchars($category['id'], ENT_QUOTES, 'UTF-8'); ?>">
-            <?=htmlspecialchars($category['name'],ENT_QUOTES,'UTF-8'); ?>
+ -->
+    <select name="modules">
+        <option value="">Select a module</option>
+        <?php foreach ($modules as $module):?>
+        <option value="<?=htmlspecialchars($module['id'], ENT_QUOTES, 'UTF-8'); ?>">
+            <?=htmlspecialchars($module['Mname'],ENT_QUOTES,'UTF-8'); ?>
         </option>
         <?php endforeach;?>
     </select>
