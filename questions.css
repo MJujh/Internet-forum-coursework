@@ -1,46 +1,202 @@
-* {margin: 0; padding: 0; }
+/* Reset and base */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+  background-color: #dae0e6;
+  color: #1a1a1b;
+}
 
+header {
+  background-color: #FF4500;
+  padding: 1.25rem 0;
+  border-bottom: 5px solid #d7dadc;
+}
 
-body {font-family: Arial, Helvetica, Sans-serif; }
-header {display: block;  background-color: #3cbc8d; padding: 20px; border-bottom: 5px solid #757575;}
-#admin{background-color: #666fd2;}
-h1 {font-weight: normal; padding: 1.5em; color: white; text-shadow: 1px 1px 0px #444; width: 1000px; margin: auto;}
+#admin {
+  background-color: #FF4500;
+}
 
-nav {background-color: #443A5C;}
+h1 {
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+  text-shadow: none;
+  margin: auto;
+  padding: 1.5em 0;
+  text-align: center;
+}
 
-nav a {color: white; text-decoration: none;}
-nav a:hover {color: #ddd;}
-nav ul {display: table; width: 1000px; margin: auto;}
-nav li {display: table-cell; text-align: center; padding: 1em;}
+nav {
+  background-color: #fff;
+  border-bottom: 1px solid #d7dadc;
+}
 
-main {overflow: auto; min-height: 30vh; background-color: #f7f7f7; width: 1000px; margin: auto; box-shadow: -1000px 0 0 #f7f7f7, 1000px 0 0 #f7f7f7; padding-top: 20px;}
+nav .nav-link {
+  color: #0079d3 !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
 
-footer {padding: 1em; background-color: #FFC9A7 ; font-size: 0.8em;}
+nav .nav-link:hover {
+  color: #FF4500 !important;
+}
 
-p {margin-bottom: 1em;}
+nav .btn {
+  color: #fff;
+  background-color: #FF4500;
+  border: none;
+  font-weight: 600;
+}
 
-body {font-size: 1.2em; font-family: arial, helvetica, sans-serif}
-input, label, select, textarea {float: left; width: 15em; margin-bottom: 1em;  padding: 0.5em;}
-label {clear: left; padding: 0; margin: 0;}
-input[type="submit"] {margin-left: 15em; width: auto; padding: 0.5em 1em; clear: both; font-size: 1em;}
-form {overflow: auto; clear: both; display: block;}
+nav .btn:hover {
+  background-color: #e03d00;
+}
 
-blockquote {display: table; margin-bottom: 1em; border-bottom: 1px solid #ccc; padding: 0.5em; }
-blockquote p {display: table-cell; width: 70%; vertical-align: top;}
-blockquote form {  display: table-cell; width: 10%;}
+main {
+  min-height: 30vh;
+  background-color: #dae0e6;
+  margin: 2rem auto;
+  box-shadow: 0 2px 8px rgba(26,26,27,0.05);
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 1000px;
+}
 
-.errors {padding: 1em; border: 1px solid red; background-color: lightyellow; color: red; margin-bottom: 1em; overflow: auto;}
-.errors ul {margin-left: 1em;}
+footer {
+  padding: 1rem;
+  background-color: #fff;
+  font-size: 0.8em;
+  text-align: center;
+  margin-top: 2rem;
+  border-top: 1px solid #d7dadc;
+  color: #7c7c7c;
+  border-radius: 0 0 1rem 1rem;
+}
 
-form p {clear: both;}
-input[type="checkbox"] {float: left; clear: left; width: auto; margin-right: 10px;}
-input[type="checkbox"] + label {clear: right;}
+/* Paragraph */
+p {
+  margin-bottom: 1em;
+}
 
-.jokelist {display: table;}
-.categories {display: table-cell; width: 20%; background-color: #333; padding: 1em; list-style-type: none;}
-.categories a {color: white; text-decoration: none;}
-.categories li {margin-bottom: 1em;}
-.jokelist .jokes {display: table-cell; padding: 1em;}
+/* Forms */
+form {
+  margin-bottom: 2rem;
+}
 
-.currentpage:before { content: "["; }
-.currentpage:after { content: "]"; }
+.form-label {
+  margin-bottom: 0.5em;
+  color: #1a1a1b;
+  font-weight: 500;
+}
+
+.form-control, .form-select {
+  margin-bottom: 1em;
+  background-color: #fff;
+  border-color: #d7dadc;
+}
+
+input[type="submit"], button[type="submit"], .btn-success {
+  margin-top: 1em;
+  min-width: 8em;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  background-color: #FF4500;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: background 0.2s;
+}
+
+input[type="submit"]:hover, button[type="submit"]:hover, .btn-success:hover {
+  background-color: #e03d00;
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
+.errors {
+  padding: 1em;
+  border: 1px solid #ffb000;
+  background-color: #fff3cd;
+  color: #e03d00;
+  margin-bottom: 1em;
+  border-radius: 0.5em;
+}
+
+/* Posts/cards */
+.card, blockquote {
+  background: #fff;
+  border-radius: 0.6em;
+  box-shadow: 0 2px 4px rgba(26,26,27,0.08);
+  padding: 1em;
+  margin-bottom: 1em;
+  border: 1px solid #d7dadc;
+}
+
+blockquote p {
+  margin-bottom: 0;
+}
+
+/* Category and joke list */
+.jokelist {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.categories {
+  width: 20%;
+  background-color: #fff;
+  padding: 1em;
+  list-style: none;
+  border-radius: 0.5em 0 0 0.5em;
+  border: 1px solid #d7dadc;
+  color: #0079d3;
+}
+
+.categories a {
+  color: #0079d3;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.categories a:hover {
+  color: #FF4500;
+}
+
+.categories li {
+  margin-bottom: 1em;
+}
+
+.jokelist .jokes {
+  flex: 1;
+  padding: 1em;
+}
+
+/* Pagination */
+.currentpage:before {
+  content: "[";
+}
+.currentpage:after {
+  content: "]";
+}
+
+/* Utility classes for spacing and alignment */
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 2rem !important;
+}
+.mb-4 {
+  margin-bottom: 2rem !important;
+}
+.rounded {
+  border-radius: 0.5em !important;
+}
