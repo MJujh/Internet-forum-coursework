@@ -17,6 +17,10 @@ try{
     //$stmt->execute();
     $question = getQuestion($pdo, $_GET['id']);
     $title = 'Edit question';
+    $sql_a = 'SELECT * FROM module';
+    $modules = $pdo->query($sql_a);
+    $sql_b = 'SELECT * FROM user';
+    $users = $pdo->query($sql_b);
 
     ob_start();
     include '../templates/editquestion.html.php';

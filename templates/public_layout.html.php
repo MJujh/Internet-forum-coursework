@@ -17,6 +17,7 @@
         <li><a href="addauthor.php">Add a new author</a></li>
         <li><a href="addcate.php">Add a new category</a></li>-->
         <li><a href="../login/login.html">Login</a></li>
+        <li><a href="../register/register.html">Register</a></li>
       </ul>
     </nav>
     <main>

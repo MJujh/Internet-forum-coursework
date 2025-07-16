@@ -11,8 +11,8 @@ function totalMessages($pdo){
     return $row[0];
 }
 
-function totalAuthors($pdo){
-    $query = query($pdo,'SELECT COUNT(*) FROM author');
+function totalUsers($pdo){
+    $query = query($pdo,'SELECT COUNT(*) FROM user');
     $row = $query->fetch();
     return $row[0];
 }
@@ -31,7 +31,11 @@ function query($pdo, $sql, $parameters = []){
 
 function getQuestion($pdo, $id){
     $parameters = [':id' => $id];
-    $query = query($pdo, 'SELECT * FROM question WHERE id = :id', $parameters);
+    $query = query($pdo, 'SELECT *
+FROM question
+INNER JOIN user ON question.user_id = user.id
+INNER JOIN module ON question.module_id = module.id
+WHERE question.id = :id', $parameters);
     return $query->fetch();
 }
 

@@ -9,7 +9,7 @@ try {
   
 
   ob_start();
-  include '../templates/module.html.php';
+  include '../templates/admin_module.html.php';
   $output = ob_get_clean();
 } catch (PDOException $e) {
   $title = 'An error has occurred';

@@ -5,12 +5,6 @@
     <?= htmlspecialchars($question['text_content'], ENT_QUOTES, 'UTF-8') ?>
 
     (by <a href=""><?=htmlspecialchars($question['name'], ENT_QUOTES, 'UTF-8'); ?></a>)
-
-    <!--<a href="editquestion.php?id=<?=$joke['id']?>">Edit</a>-->
-
-    <!-- <form action="deletejoke.php" method="post">
-      <input type="hidden" name="id" value="<?=$question['id']?>">
-      <input type="submit" value="Delete">
-    </form> -->
+<img height="100px" src="../images/<?=htmlspecialchars($question['img_content'], ENT_QUOTES,'UTF-8'); ?>"/>
   </blockquote>
 <?php endforeach; ?>
