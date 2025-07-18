@@ -187,7 +187,6 @@
       <a href="public_questions.php" style="color:#b1b5b9; text-decoration:none; display:flex; align-items:center; font-size:1.5rem; margin-right:0.5rem;">
         <i class="bi bi-arrow-left-circle"></i>
       </a>
-      <img src="https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png" alt="avatar" class="question-avatar">
       <div>
         <div>
           <span class="fw-bold"><?= htmlspecialchars($question['name']) ?></span>

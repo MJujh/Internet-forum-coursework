@@ -187,7 +187,6 @@
       <a href="user_questions.php" style="color:#b1b5b9; text-decoration:none; display:flex; align-items:center; font-size:1.5rem; margin-right:0.5rem;">
         <i class="bi bi-arrow-left-circle"></i>
       </a>
-      <img src="https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png" alt="avatar" class="question-avatar" style="margin: 0;">
       <div style="display: flex; flex-direction: column;">
         <div style="display: flex; align-items: center; gap: 0.5rem;">
           <span class="fw-bold"><?= htmlspecialchars($question['name']) ?></span>
@@ -253,9 +252,7 @@
         <?php foreach ($comments as $comment): ?>
           <div class="comment-item" style="background:#181a1b;border-radius:10px;padding:0.8rem 1rem;margin-bottom:1rem;box-shadow:0 1px 4px #0002;">
             <div style="display:flex;align-items:center;gap:0.7rem;">
-              <div style="width:36px;height:36px;border-radius:50%;background:#23272a;display:flex;align-items:center;justify-content:center;">
-                <i class="bi bi-person" style="font-size:1.5rem;color:#b1b5b9;"></i>
-              </div>
+
               <div>
                 <span style="font-weight:600;color:#fff;"><?= htmlspecialchars($comment['name']) ?></span>
                 <span style="color:#b1b5b9;font-size:0.95rem;margin-left:0.5rem;"><?= htmlspecialchars($comment['date']) ?></span>

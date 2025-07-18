@@ -25,8 +25,7 @@
                 <i class="bi bi-chat"></i>
                 <span class="mx-1"><?= isset($question['comments']) ? htmlspecialchars($question['comments']) : '' ?></span>
               </button>
-              <button type="button" class="btn btn-sm btn-outline-secondary d-flex align-items-center px-2" style="background:#23272a;border:none;">
-                <i class="bi bi-person"></i>
+
               </button>
               <button type="button" class="btn btn-sm btn-outline-secondary d-flex align-items-center px-2" style="background:#23272a;border:none;">
                 <i class="bi bi-share"></i>

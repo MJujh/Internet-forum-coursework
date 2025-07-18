@@ -42,9 +42,6 @@
                 <i class="bi bi-chat"></i>
               </button>
               <button type="button" class="btn btn-sm btn-outline-secondary d-flex align-items-center px-2" style="background:#23272a;border:none;" disabled>
-                <i class="bi bi-person"></i>
-              </button>
-              <button type="button" class="btn btn-sm btn-outline-secondary d-flex align-items-center px-2" style="background:#23272a;border:none;" disabled>
                 <i class="bi bi-share"></i>
                 <span class="mx-1">Share</span>
               </button>
