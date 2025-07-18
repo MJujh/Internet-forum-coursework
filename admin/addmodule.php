@@ -8,7 +8,7 @@ if (isset($_POST['name'])) {
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':name', $_POST['name']);
     $stmt->execute();
-    header('location: module.php');
+    header('location: admin_module.php');
   } catch (PDOException $e) {
     $title = 'An error has occurred';
     $output = 'Database error: ' . $e->getMessage();

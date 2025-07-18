@@ -3,8 +3,7 @@ try {
   include '../includes/DatabaseConnection.php';
   include '../includes/DatabaseFunctions.php';
 
-  $sql = 'SELECT * FROM question
-  INNER JOIN user ON user_id = user.id';
+  $sql = 'SELECT * FROM user';
   $users = $pdo->query($sql);
   $title = 'User List';
   $totalUsers = totalUsers($pdo);

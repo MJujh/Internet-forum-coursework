@@ -6,15 +6,16 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])
     $sql = 'INSERT INTO user SET
       name = :name,
       email = :email,
-      password = :password';
-      
+      password = :password,
+      role = "user"';
+
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':name', $_POST['name']);
     $stmt->bindValue(':email', $_POST['email']);
-    $stmt->bindValue(':password', password_hash($_POST['password'], PASSWORD_DEFAULT)); // Securely hash password
+    $stmt->bindValue(':password', ($_POST['password']));
     $stmt->execute();
 
-    header('Location: user_index.php'); // Redirect after successful registration
+    header('Location: ../login/login.html'); // Redirect after successful registration
     exit;
   } catch (PDOException $e) {
     $title = 'An error has occurred';
@@ -25,9 +26,9 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])
 
   $title = 'Register a New User';
   ob_start();
-  include '../templates/registeruser.html.php';
+  include 'register.html.php';
   $output = ob_get_clean();
 }
 
-include '../templates/admin_layout.html.php';
+include '../templates/public_layout.html.php';
 ?>

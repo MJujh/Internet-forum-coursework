@@ -31,11 +31,22 @@ function query($pdo, $sql, $parameters = []){
 
 function getQuestionById($pdo, $id){
     $parameters = [':id' => $id];
-    $query = query($pdo, 'SELECT *
-FROM question
-INNER JOIN user ON question.user_id = user.id
-INNER JOIN module ON question.module_id = module.id
-WHERE question.id = :id', $parameters);
+    $query = query($pdo, 'SELECT 
+        question.id, 
+        question.title, 
+        question.text_content, 
+        question.date, 
+        question.img_content, 
+        question.module_id,
+        user.name AS name, 
+        user.email, 
+        user.id AS user_id,
+        module.id AS module_id, 
+        module.Mname AS module_name
+     FROM question
+     INNER JOIN user ON question.user_id = user.id
+     INNER JOIN module ON question.module_id = module.id
+     WHERE question.id = :id', $parameters);
     return $query->fetch();
 }
 
@@ -108,5 +119,22 @@ function deleteMessage($pdo, $id){
     $sql = 'DELETE FROM admin_message WHERE id = :id';
     $parameters = [':id' => $id];
     query($pdo, $sql, $parameters);
+}
+
+function insertComment($pdo, $questionId, $userId, $text_content, $img_content = '') {
+    $sql = 'INSERT INTO comment (question_id, user_id, text_content, img_content, date)
+            VALUES (:question_id, :user_id, :text_content, :img_content, CURDATE())';
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':question_id', $questionId);
+    $stmt->bindValue(':user_id', $userId);
+    $stmt->bindValue(':text_content', $text_content);
+    $stmt->bindValue(':img_content', $img_content);
+    $stmt->execute();
+}
+
+function updateModule($pdo, $id, $name){
+    $query = 'UPDATE module SET Mname = :name WHERE id = :id';
+    $parameters = [':name' => $name, ':id' => $id];
+    query($pdo, $query, $parameters);
 }
 

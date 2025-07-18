@@ -1,3 +1,5 @@
+
+
 <p class="text-light"><?=$totalQuestions?> questions have been submitted to the forum.</p>
 
 <div class="row">
@@ -10,15 +12,15 @@
             <img height="100px" class="me-3 rounded" src="../images/<?= htmlspecialchars($question['img_content'], ENT_QUOTES,'UTF-8'); ?>" alt="question image"/>
           <?php endif; ?>
           <div>
+            <!-- Module tag -->
+            <span style="display:inline-block;background:#353a3f;color:#8ecae6;font-size:0.85rem;padding:2px 10px;border-radius:8px;margin-bottom:0.3rem;width:fit-content;">
+              <?= htmlspecialchars($question['Mname']) ?>
+            </span>
             <p class="card-text mb-2"><?= htmlspecialchars($question['text_content'], ENT_QUOTES, 'UTF-8') ?></p>
             <small class="text-secondary">by <?= htmlspecialchars($question['name'], ENT_QUOTES, 'UTF-8'); ?></small>
             <!-- Post actions bar -->
             <div class="d-flex align-items-center mt-3 gap-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary d-flex align-items-center px-2" style="background:#23272a;border:none;">
-                <i class="bi bi-arrow-up"></i>
-                <span class="mx-1"><?= isset($question['vote']) ? htmlspecialchars($question['vote']) : '' ?></span>
-                <i class="bi bi-arrow-down"></i>
-              </button>
+              <!-- Removed vote button -->
               <button type="button" class="btn btn-sm btn-outline-secondary d-flex align-items-center px-2" style="background:#23272a;border:none;">
                 <i class="bi bi-chat"></i>
                 <span class="mx-1"><?= isset($question['comments']) ? htmlspecialchars($question['comments']) : '' ?></span>

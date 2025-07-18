@@ -1,5 +1,5 @@
 <?php
-$title = 'Internet Joke Database';
+$title = 'Internet Forum - user Home';
 ob_start();
 include '../templates/home.html.php';
 $output = ob_get_clean();

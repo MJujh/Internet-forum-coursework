@@ -18,6 +18,7 @@ try{
     $module = getModule($pdo, $_GET['id']);
     $title = 'Edit module';
 
+    
     ob_start();
     include '../templates/editmodule.html.php';
     $output = ob_get_clean();

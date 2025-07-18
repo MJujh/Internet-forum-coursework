@@ -5,18 +5,20 @@ if (isset($_POST['text_content'])) {
     include '../includes/DatabaseConnection.php';
     include '../includes/DatabaseFunctions.php';
 
+    $users = $_SESSION["User_id"];
+    $img_content = '';
 
-    // $sql = 'INSERT INTO joke SET
-    //   joketext = :joketext,
-    //   jokedate = CURDATE(),
-    //   authorid=:authorid
-    //   categoryid = 3';
-    // $stmt = $pdo->prepare($sql);
-    // $stmt->bindValue(':joketext', $_POST['joketext']);
-    // $stmt->execute();
-      $users = $_SESSION["User_id"];
-    insertQuestion($pdo, $_POST['text_content'], $_POST['img_content'], $users,$_POST['modules']);
-    header('location: user_question.php');
+    if (isset($_FILES['img_content']) && $_FILES['img_content']['error'] === UPLOAD_ERR_OK) {
+        $imgName = uniqid() . '_' . basename($_FILES['img_content']['name']);
+        $targetPath = '../images/' . $imgName;
+        move_uploaded_file($_FILES['img_content']['tmp_name'], $targetPath);
+        $img_content = $imgName;
+    }
+
+    insertQuestion($pdo, $_POST['text_content'], $img_content, $users, $_POST['modules']);
+    $newId = $pdo->lastInsertId();
+    header('location: user_question.php?id=' . $newId);
+    exit;
   } catch (PDOException $e) {
     $title = 'An error has occurred';
     $output = 'Database error: ' . $e->getMessage();

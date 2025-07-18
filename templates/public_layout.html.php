@@ -136,7 +136,7 @@
                 </a>
               </li>
               <li class="nav-item mb-2">
-                <a class="nav-link" href="../register/register.html">
+                <a class="nav-link" href="../register/registeruser.php">
                   <i class="bi bi-person-plus"></i> <span>Register</span>
                 </a>
               </li>
@@ -156,7 +156,7 @@
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title"><?= htmlspecialchars($question['title']) ?></h5>
-                      <p class="card-text"><?= htmlspecialchars($question['text-content']) ?></p>
+                      <p class="card-text"><?= htmlspecialchars($question['text_content']) ?></p>
                     </div>
                   </div>
                 </a>

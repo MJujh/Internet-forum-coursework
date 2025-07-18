@@ -6,7 +6,7 @@ try {
   $stmt = $pdo->prepare($sql);
   $stmt->bindValue(':id', $_POST['id']);
   $stmt->execute();
-  header('location: module.php');
+  header('location: admin_module.php');
 } catch (PDOException $e) {
   $title = 'An error has occurred';
   $output = 'Unable to connect to delete module: ' . $e->getMessage();
