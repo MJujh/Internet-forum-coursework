@@ -3,7 +3,7 @@
 <div class="row">
 <?php foreach ($questions as $question): ?>
   <div class="col-12 mb-3">
-    <a href="public_question.html.php?id=<?= htmlspecialchars($question['id']) ?>" style="text-decoration:none;">
+    <a href="public_question.php?id=<?= htmlspecialchars($question['id']) ?>" style="text-decoration:none;">
       <div class="card bg-dark text-light shadow-sm h-100" style="cursor:pointer;">
         <div class="card-body d-flex align-items-center">
           <?php if (!empty($question['img_content'])): ?>
@@ -16,12 +16,12 @@
             <div class="d-flex align-items-center mt-3 gap-2">
               <button type="button" class="btn btn-sm btn-outline-secondary d-flex align-items-center px-2" style="background:#23272a;border:none;">
                 <i class="bi bi-arrow-up"></i>
-                <span class="mx-1"><?= isset($question['votes']) ? htmlspecialchars($question['votes']) : '1.3K' ?></span>
+                <span class="mx-1"><?= isset($question['vote']) ? htmlspecialchars($question['vote']) : '' ?></span>
                 <i class="bi bi-arrow-down"></i>
               </button>
               <button type="button" class="btn btn-sm btn-outline-secondary d-flex align-items-center px-2" style="background:#23272a;border:none;">
                 <i class="bi bi-chat"></i>
-                <span class="mx-1"><?= isset($question['comments']) ? htmlspecialchars($question['comments']) : '105' ?></span>
+                <span class="mx-1"><?= isset($question['comments']) ? htmlspecialchars($question['comments']) : '' ?></span>
               </button>
               <button type="button" class="btn btn-sm btn-outline-secondary d-flex align-items-center px-2" style="background:#23272a;border:none;">
                 <i class="bi bi-person"></i>

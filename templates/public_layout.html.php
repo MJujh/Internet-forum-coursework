@@ -149,21 +149,21 @@
         <!-- Main Content -->
         <div class="col py-0 main-content">
           <div class="container">
-            <!-- Question list as clickable cards -->
+<!--              Question list as clickable cards -->
             <?php if (isset($questions) && is_array($questions)): ?>
               <?php foreach ($questions as $question): ?>
-                <a href="public_question.php?id=<?= htmlspecialchars($question['id']) ?>">
+                <a href="public_question.php>">
                   <div class="card">
                     <div class="card-body">
                       <h5 class="card-title"><?= htmlspecialchars($question['title']) ?></h5>
-                      <p class="card-text"><?= htmlspecialchars($question['summary']) ?></p>
+                      <p class="card-text"><?= htmlspecialchars($question['text-content']) ?></p>
                     </div>
                   </div>
                 </a>
               <?php endforeach; ?>
             <?php else: ?>
               <?= $output ?>
-            <?php endif; ?>
+            <?php endif; ?> 
           </div>
         </div>
       </div>

@@ -1,17 +1,10 @@
 <?php
-// Example data for demonstration; replace with actual database fetching logic.
-$question = [
-  'id' => 2,
-  'title' => 'Deadly Assault 2.1 Boss HP update on Hakushin',
-  'text_content' => "69016: Miasma Priest: 77 million -> 91 million\n\nNew boss: 101 million\n\nNotorious Pompey: 83 million -> 89 million\n\n69017: New boss: 101 million\n\nNotorious butcher: 107 million -> 118 million\n\nNotorious marionettes: 89 million -> 98 million\n\n69018: Notorious butcher: 118 million\n\nMiasma priest: 91 million\n\nTyphon destroyer: 83 million -> 89 million",
-  'img_content' => '', // Optionally your image filename
-  'name' => 'Glad-Entrepreneur303',
-  'time' => '17 hr. ago',
-  'badge' => 'Reliable',
-  'votes' => '349',
-  // 'comments' => '313', // No comment count
-];
+include '../includes/DatabaseFunctions.php';
+include '../includes/DatabaseConnection.php';
 
+
+
+$question = getQuestionById($pdo, $_GET['id'] ?? 0);
 ?>
 
 <!DOCTYPE html>
@@ -203,8 +196,8 @@ $question = [
       <div>
         <div>
           <span class="fw-bold"><?= htmlspecialchars($question['name']) ?></span>
-          <span class="question-meta">• <?= htmlspecialchars($question['time']) ?></span>
-          <span class="question-badge"><?= htmlspecialchars($question['badge']) ?></span>
+          <span class="question-meta">• <?= htmlspecialchars($question['date']) ?></span>
+          <!-- <span class="question-badge"><?= htmlspecialchars($question['badge']) ?></span> -->
         </div>
         <div class="question-title"><?= htmlspecialchars($question['title']) ?></div>
       </div>
@@ -214,18 +207,13 @@ $question = [
     <?php endif; ?>
     <div class="question-content"><?= nl2br(htmlspecialchars($question['text_content'], ENT_QUOTES, 'UTF-8')) ?></div>
     <div class="post-actions">
-      <button class="post-action-btn">
-        <i class="bi bi-arrow-up"></i>
-        <?= htmlspecialchars($question['votes']) ?>
-        <i class="bi bi-arrow-down"></i>
-      </button>
-      <button class="post-action-btn">
+      <button class="post-action-btn" type="button">
         <i class="bi bi-chat"></i>
       </button>
-      <button class="post-action-btn">
+      <button class="post-action-btn" type="button">
         <i class="bi bi-person"></i>
       </button>
-      <button class="post-action-btn">
+      <button class="post-action-btn" type="button">
         <i class="bi bi-share"></i> Share
       </button>
     </div>
@@ -233,7 +221,7 @@ $question = [
       <button class="comment-trigger" id="showCommentBox">Join the conversation</button>
       <div id="commentBox" class="comment-box" style="display:none;">
         <div class="comment-toolbar">
-          <span><i class="bi bi-image"></i></span>
+          <span><i class="bi bi-image" id="addImageIcon" style="cursor:pointer;"></i><input type="file" id="commentImageInput" accept="image/*" style="display:none"></span>
           <span><i class="bi bi-emoji-smile"></i></span>
           <span>Aa</span>
         </div>
@@ -247,6 +235,7 @@ $question = [
   </div>
 </div>
 <script>
+  // Comment box logic
   const showCommentBox = document.getElementById('showCommentBox');
   const commentBox = document.getElementById('commentBox');
   const cancelComment = document.getElementById('cancelComment');
@@ -257,6 +246,19 @@ $question = [
   cancelComment.addEventListener('click', () => {
     commentBox.style.display = 'none';
     showCommentBox.style.display = 'block';
+  });
+
+  // Add image from computer when clicking the image icon
+  const addImageIcon = document.getElementById('addImageIcon');
+  const commentImageInput = document.getElementById('commentImageInput');
+  addImageIcon.addEventListener('click', function() {
+    commentImageInput.click();
+  });
+  commentImageInput.addEventListener('change', function() {
+    if (commentImageInput.files && commentImageInput.files[0]) {
+      // Optionally show a preview or handle the file upload here
+      alert('Selected image: ' + commentImageInput.files[0].name);
+    }
   });
   // You can implement submit logic for #submitComment as needed
 </script>

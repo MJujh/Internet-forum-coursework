@@ -29,13 +29,20 @@ function query($pdo, $sql, $parameters = []){
     return $query;
 }
 
-function getQuestion($pdo, $id){
+function getQuestionById($pdo, $id){
     $parameters = [':id' => $id];
     $query = query($pdo, 'SELECT *
 FROM question
 INNER JOIN user ON question.user_id = user.id
 INNER JOIN module ON question.module_id = module.id
 WHERE question.id = :id', $parameters);
+    return $query->fetch();
+}
+
+function getQuestions($pdo){
+    $query = query($pdo, 'SELECT question.id, question.title, question.text_content, question.date, question.img_content, user.name, user.email FROM question
+    INNER JOIN user ON question.user_id = user.id
+    INNER JOIN module ON question.module_id = module.id');
     return $query->fetch();
 }
 

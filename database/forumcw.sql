@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 14, 2025 at 01:42 PM
+-- Generation Time: Jul 18, 2025 at 10:35 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,35 @@ SET time_zone = "+00:00";
 --
 -- Database: `forumcw`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_message`
+--
+
+CREATE TABLE `admin_message` (
+  `id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `date` date NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `text_content` text NOT NULL,
+  `img_content` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `vote` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -54,17 +83,18 @@ CREATE TABLE `question` (
   `date` date NOT NULL,
   `img_content` text NOT NULL,
   `module_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `vote` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`id`, `title`, `text_content`, `date`, `img_content`, `module_id`, `user_id`) VALUES
-(1, 'How do I use JOIN in SQL?', 'I am confused about different types of JOIN in SQL. Can someone help?', '2025-06-28', '', 2, 1),
-(2, 'Centering a div in CSS?', 'I tried margin: auto but it’s not working as expected.', '2025-06-29', '', 1, 2),
-(3, 'Agile vs Waterfall?', 'What are the main differences and when should I use each model?', '2025-06-30', '', 3, 3);
+INSERT INTO `question` (`id`, `title`, `text_content`, `date`, `img_content`, `module_id`, `user_id`, `vote`) VALUES
+(1, 'How do I use JOIN in SQL?', 'I am confused about different types of JOIN in SQL. Can someone help?', '2025-06-28', 'pic1.jpg', 2, 1, 9),
+(2, 'Centering a div in CSS?', 'I tried margin: auto but it’s not working as expected.', '2025-06-29', '', 1, 2, 13),
+(3, 'Agile vs Waterfall?', 'What are the main differences and when should I use each model?', '2025-06-30', '', 3, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -94,6 +124,21 @@ INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`) VALUES
 --
 
 --
+-- Indexes for table `admin_message`
+--
+ALTER TABLE `admin_message`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`,`question_id`),
+  ADD KEY `question_id` (`question_id`);
+
+--
 -- Indexes for table `module`
 --
 ALTER TABLE `module`
@@ -118,6 +163,18 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `admin_message`
+--
+ALTER TABLE `admin_message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
@@ -127,7 +184,7 @@ ALTER TABLE `module`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -138,6 +195,19 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `admin_message`
+--
+ALTER TABLE `admin_message`
+  ADD CONSTRAINT `admin_message_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `question`

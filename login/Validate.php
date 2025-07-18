@@ -21,7 +21,7 @@ try{
             header("Location:../user/user_index.php");
         }
     }else{
-        header("Location:Wronglogin.php");
+        header("Location:login.html?error=1");
     } 
 
 
