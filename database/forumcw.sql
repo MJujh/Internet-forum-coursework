@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2025 at 10:35 AM
+-- Generation Time: Jul 18, 2025 at 07:25 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,13 @@ CREATE TABLE `admin_message` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `admin_message`
+--
+
+INSERT INTO `admin_message` (`id`, `message`, `date`, `user_id`) VALUES
+(1, 'test message 1', '2025-07-18', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -45,10 +52,18 @@ CREATE TABLE `comment` (
   `user_id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
   `text_content` text NOT NULL,
-  `img_content` int(11) NOT NULL,
+  `img_content` text NOT NULL,
   `date` date NOT NULL,
   `vote` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `user_id`, `question_id`, `text_content`, `img_content`, `date`, `vote`) VALUES
+(4, 1, 1, 'test comment1', 'pic1.jpg', '2025-07-18', 0),
+(5, 1, 2, 'test comment 2', '0', '2025-07-18', 0);
 
 -- --------------------------------------------------------
 
@@ -66,9 +81,10 @@ CREATE TABLE `module` (
 --
 
 INSERT INTO `module` (`id`, `Mname`) VALUES
-(1, 'Web Technologies'),
+(1, 'Web Technologies\r\n'),
 (2, 'Database Systems'),
-(3, 'Software Engineering');
+(3, 'Software Engineering'),
+(6, 'test module1');
 
 -- --------------------------------------------------------
 
@@ -94,7 +110,9 @@ CREATE TABLE `question` (
 INSERT INTO `question` (`id`, `title`, `text_content`, `date`, `img_content`, `module_id`, `user_id`, `vote`) VALUES
 (1, 'How do I use JOIN in SQL?', 'I am confused about different types of JOIN in SQL. Can someone help?', '2025-06-28', 'pic1.jpg', 2, 1, 9),
 (2, 'Centering a div in CSS?', 'I tried margin: auto but it’s not working as expected.', '2025-06-29', '', 1, 2, 13),
-(3, 'Agile vs Waterfall?', 'What are the main differences and when should I use each model?', '2025-06-30', '', 3, 3, 1);
+(3, 'Agile vs Waterfall?', 'What are the main differences and when should I use each model?', '2025-06-30', '', 3, 3, 1),
+(10, '', 'test question 3', '2025-07-18', '687a6a350d23b_pic2.webp', 1, 1, 0),
+(11, '', 'test admin question1', '2025-07-18', '687a7c9e43c7c_pic2.webp', 1, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -107,17 +125,19 @@ CREATE TABLE `user` (
   `name` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
-  `role` text NOT NULL
+  `role` text NOT NULL,
+  `avatar` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`) VALUES
-(1, 'Alice Nguyen', 'alice@university.edu', 'alice123', 'user'),
-(2, 'Bob Tran', 'bob@university.edu', 'bob456', 'user'),
-(3, 'Dr. Linh Le', 'linh@university.edu', 'linhadmin', 'admin');
+INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`, `avatar`) VALUES
+(1, 'Alice Nguyen', 'alice@university.edu', 'alice123', 'user', ''),
+(2, 'Bob Tran', 'bob@university.edu', 'bob456', 'user', ''),
+(3, 'Dr. Linh Le', 'linh@university.edu', 'linhadmin', 'admin', ''),
+(5, 'testuser', 'testuser@gmail.com', '1234', 'user', '');
 
 --
 -- Indexes for dumped tables
@@ -166,31 +186,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin_message`
 --
 ALTER TABLE `admin_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
