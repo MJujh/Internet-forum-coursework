@@ -15,7 +15,7 @@ try{
     //$stmt = $pdo->prepare($sql);
     //$stmt->bindValue(':id', $_GET['id']);
     //$stmt->execute();
-    $question = getQuestion($pdo, $_GET['id']);
+    $question = getQuestionById($pdo, $_GET['id']);
     $title = 'Edit question';
     $sql_a = 'SELECT * FROM module';
     $modules = $pdo->query($sql_a);
