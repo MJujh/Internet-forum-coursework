@@ -1,5 +1,5 @@
 <?php
-
+require "../login/Check.php";
 
 
 try {

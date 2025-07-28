@@ -147,11 +147,15 @@
             <button class="login-btn" type="submit">Get Started</button>
         </form>
         <div id="login-error" style="display:none;color:#e74c3c;font-size:1rem;margin-top:10px;text-align:center;">wrong login info please enter again</div>
-        <script>
-        // Show error message if ?error=1 is in the URL
-        if (window.location.search.includes('error=1')) {
-            document.getElementById('login-error').style.display = 'block';
-        }
-        </script>
+</form>
+<a href="../public/public_index.php" style="display:block;margin:18px auto 0 auto;width:100%;text-align:center;text-decoration:none;">
+    <button type="button" style="width:100%;padding:12px 0;background:#3a7bd5;color:#fff;border:none;border-radius:8px;font-size:1.05rem;font-weight:500;cursor:pointer;transition:background 0.2s;">Back to public forum</button>
+</a>
+<script>
+// Show error message if ?error=1 is in the URL
+if (window.location.search.includes('error=1')) {
+    document.getElementById('login-error').style.display = 'block';
+}
+</script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+require "../login/Check.php";
 $title = 'Internet Forum - user Home';
 ob_start();
 include '../templates/home.html.php';

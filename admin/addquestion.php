@@ -1,5 +1,5 @@
 <?php
-session_start();
+require "../login/Check.php";
 if (isset($_POST['text_content'])) {
   try {
     include '../includes/DatabaseConnection.php';

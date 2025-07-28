@@ -1,5 +1,6 @@
 <?php
-session_start();
+require "../login/Check.php";
+
 include '../includes/DatabaseFunctions.php';
 include '../includes/DatabaseConnection.php';
 

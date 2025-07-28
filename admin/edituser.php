@@ -1,4 +1,5 @@
 <?php
+require "../login/Check.php";
 include '../includes/DatabaseConnection.php';
 try{
   if(isset($_POST['name'])){
