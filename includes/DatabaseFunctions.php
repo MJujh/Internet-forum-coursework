@@ -57,10 +57,23 @@ function getQuestions($pdo){
     return $query->fetch();
 }
 
-function updateQuestion($pdo,$id,$text_content){
-    $query = 'UPDATE question SET text_content = :text_content WHERE id = :id';
-    $parameters = [':text_content' => $text_content, ':id' => $id];
-    query($pdo, $query, parameters: $parameters);
+
+function updateQuestion($pdo, $id, $text_content, $img_content) {
+    if ($img_content !== null) {
+        $query = 'UPDATE question SET text_content = :text_content, img_content = :img_content WHERE id = :id';
+        $parameters = [
+            ':text_content' => $text_content,
+            ':img_content' => $img_content,
+            ':id' => $id
+        ];
+    } else {
+        $query = 'UPDATE question SET text_content = :text_content WHERE id = :id';
+        $parameters = [
+            ':text_content' => $text_content,
+            ':id' => $id
+        ];
+    }
+    query($pdo, $query, $parameters);
 }
 
 function insertQuestion($pdo, $text_content, $img_content, $userid, $moduleid){

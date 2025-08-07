@@ -4,13 +4,28 @@ include '../includes/DatabaseConnection.php';
 include '../includes/DatabaseFunctions.php';
 try{
   if(isset($_POST['text_content'])){
-    // $sql = 'UPDATE joke SET joketext = :joketext WHERE id = :id';
-    // $stmt = $pdo->prepare($sql);
-    // $stmt->bindValue(':joketext', $_POST['joketext']);
-    // $stmt->bindValue(':id', $_POST['jokeid']);
-    // $stmt->execute();
-    updateQuestion($pdo, $_POST['id'], $_POST['text_content']);
-    header('location: admin_question.php');
+    // Handle image removal if requested
+    if (isset($_POST['remove_image']) && $_POST['remove_image'] == '1') {
+      $question = getQuestionById($pdo, $_POST['id']);
+      if (!empty($question['img_content'])) {
+        $imgPath = '../images/' . $question['img_content'];
+        if (file_exists($imgPath)) {
+          unlink($imgPath);
+        }
+        // Set img_content to empty in DB
+        $stmt = $pdo->prepare('UPDATE question SET img_content = NULL WHERE id = :id');
+        $stmt->execute(['id' => $_POST['id']]);
+      }
+    }
+        if (isset($_FILES['img_content']) && $_FILES['img_content']['error'] === UPLOAD_ERR_OK) {
+        $imgName = uniqid() . '_' . basename($_FILES['img_content']['name']);
+        $targetPath = '../images/' . $imgName;
+        move_uploaded_file($_FILES['img_content']['tmp_name'], $targetPath);
+        $img_content = $imgName;
+    }
+
+    updateQuestion($pdo, $_POST['id'], $_POST['text_content'], $img_content ?? null);
+    header('location: admin_questions.php');
   }else{
     //$sql = 'SELECT * FROM joke WHERE id = :id';
     //$stmt = $pdo->prepare($sql);

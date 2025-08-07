@@ -6,7 +6,6 @@ require "../login/Check.php";
 try {
   include '../includes/DatabaseConnection.php';
   include '../includes/DatabaseFunctions.php';
-  session_start();
   $userId = $_SESSION['User_id'];
 
   $sql = 'SELECT admin_message.id, admin_message.message, admin_message.date, user.name  FROM admin_message INNER JOIN user ON admin_message.user_id = user.id  ORDER BY admin_message.date DESC';

@@ -41,4 +41,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_comment_id']))
 // ...existing code to fetch and display the question and comments...
 
 include '../templates/admin_question.html.php';
+
 ?>
